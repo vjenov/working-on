@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hellchang.web.usr.UserMapper">
+    <select id="selectByIdPw" resultType="User">
+        SELECT * FROM USER
+        WHERE UID LIKE #{uid} AND PWD LIKE #{pwd}
+    </select>
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO USER (UID, PWD, UNAME, GENDER, AGE, HEIGHT, WEIGHT, MUSCLE, FAT, CAREER, DIVISION) VALUES (
+            #{uid}, #{pwd}, #{uname}, #{gender}, #{age}, #{height}, #{weight}, #{muscle}, #{fat}, #{career}, #{division}
+        )
+    </insert>
+    <select id="existId" resultType="int">
+    	SELECT COUNT(*) FROM USER
+    	WHERE UID LIKE #{uid}
+    </select>
+    <update id="makeRoutine" parameterType="User">
+    	UPDATE USER
+    	SET PWD = #{pwd},
+    	UNAME = #{uname},
+    	GENDER = #{gender},
+ 	    AGE = #{age},
+    	HEIGHT = #{height},
+    	WEIGHT = #{weight},
+    	MUSCLE = #{muscle},
+    	FAT = #{fat},
+    	CAREER = #{career},
+    	DIVISION = #{division}
+    	WHERE UID LIKE #{uid}
+    </update>
+    <select id ="find0RoutineById" parameterType="User" resultType="User">
+    <![CDATA[
+    	(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PRESS WHERE PART LIKE 'S' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PULL WHERE PART LIKE 'S' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PRESS WHERE PART LIKE 'C' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PULL WHERE PART LIKE 'C' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PRESS WHERE PART LIKE 'B' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PULL WHERE PART LIKE 'B' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PRESS WHERE PART LIKE 'A' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PULL WHERE PART LIKE 'A' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PRESS WHERE PART LIKE 'U' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PULL WHERE PART LIKE 'U' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
+		]]>
+    </select>
+    <select id ="find2RoutineById" parameterType="User" resultType="User">
+    <![CDATA[
+    	(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PRESS WHERE PART LIKE #{part1} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PULL WHERE PART LIKE #{part1} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PRESS WHERE PART LIKE #{part#{career}} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PULL WHERE PART LIKE #{part#{career}} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PRESS WHERE PART LIKE #{part3} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PULL WHERE PART LIKE #{part3} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PRESS WHERE PART LIKE #{part4} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
+		UNION
+		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
+		FROM PULL WHERE PART LIKE #{part4} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
+		]]>
+    </select>
+</mapper>
