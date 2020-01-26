@@ -36,10 +36,7 @@ mypage_vue = {
 		},
 	show_routine: x=>{
 		return `<h1>루틴보기</h1>
-	<body>
-	<div id="my_routine" class="my-3 p-3 bg-white rounded box-shadow">
-	</div>
-	</body>	
-	`
+		<div><table id="my_routine" border="1"></table></div>
+		`
 	}
 };

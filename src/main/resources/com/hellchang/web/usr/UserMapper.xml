@@ -30,64 +30,8 @@
     	DIVISION = #{division}
     	WHERE UID LIKE #{uid}
     </update>
-    <select id ="find0RoutineById" parameterType="User" resultType="User">
-    <![CDATA[
-    	(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PRESS WHERE PART LIKE 'S' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PULL WHERE PART LIKE 'S' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PRESS WHERE PART LIKE 'C' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PULL WHERE PART LIKE 'C' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PRESS WHERE PART LIKE 'B' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PULL WHERE PART LIKE 'B' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PRESS WHERE PART LIKE 'A' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PULL WHERE PART LIKE 'A' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PRESS WHERE PART LIKE 'U' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PULL WHERE PART LIKE 'U' AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 1)
-		]]>
-    </select>
-    <select id ="find2RoutineById" parameterType="User" resultType="User">
-    <![CDATA[
-    	(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PRESS WHERE PART LIKE #{part1} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PULL WHERE PART LIKE #{part1} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PRESS WHERE PART LIKE #{part#{career}} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PULL WHERE PART LIKE #{part#{career}} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PRESS WHERE PART LIKE #{part3} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PULL WHERE PART LIKE #{part3} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PRESS WHERE PART LIKE #{part4} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
-		UNION
-		(SELECT ENAME "운동명", PART "운동부위", RWEIGHT * #{career} "추천중량"
-		FROM PULL WHERE PART LIKE #{part4} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 2)
-		]]>
-    </select>
+    <select id="selectUpdatedUser" parameterType="User" resultType="User">
+    	SELECT * FROM USER
+    	WHERE UID LIKE #{uid}
+   	</select>
 </mapper>

@@ -119,10 +119,10 @@ auth = (()=>{
         			dataType: 'json',
         			contentType: 'application/json',
         			success: d =>{
-        				alert('로그인성공'+router_js)
-//        				$.extend(new User(d))
-        				setCookie("UID", d.uid)
-        				alert('저장된 쿠키:::' + getCookie("UID"))
+						alert('로그인성공'+router_js)
+						sessionStorage.setItem('uid', d.uid)
+						localStorage.setItem('career', d.career)
+						localStorage.setItem('weight', d.weight)
         				mypage.onCreate(d)
         			},
         			error: e =>{

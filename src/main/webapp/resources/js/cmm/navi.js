@@ -41,8 +41,18 @@ navi = (()=>{
         .appendTo('#show_routine')
         .click( e=>{
         	e.preventDefault()
-        	mypage.showRoutine(x)
+        	mypage.setPartition(x)
+		})
+		  $('<a>',{
+        	href : '#',
+	        text : '필요 단백질 계산기'
         })
+        .addClass('nav-link')
+        .appendTo('#protein_calc')
+        .click( e=>{
+        	e.preventDefault()
+        	mypage.proteinCalc()
+		})
 	}
 	return {onCreate}
 })()

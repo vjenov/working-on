@@ -4,9 +4,6 @@ import java.util.Map;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,30 +52,12 @@ public class UserCtrl {
 	}
 
 	@PutMapping("/{uid}")
-	public Map<?, ?> makeRoutine(@PathVariable String uid, @RequestBody User param) {
+	public User makeRoutine(@PathVariable String uid, @RequestBody User param) {
 		printer.accept("루틴 만들기 도착");
 		printer.accept("아이디" + param);
 		Consumer<User> c = o -> userMapper.makeRoutine(param);
 		c.accept(param);
-		map.clear();
-		map.put("msg", "Success");
-		return map;
-	}
-
-	@GetMapping("/{uid}")
-	public User showRoutine(@PathVariable String uid, @RequestBody User param) {
-		printer.accept("컨트롤러 도착" + param);
-		Function<User, User> f = null;
-		switch(param.getDivision()) {
-			case 0 : f = t -> userMapper.find0RoutineById(param);
-			break;
-			case 2 : f = t -> userMapper.find2RoutineById(param);
-			break;
-			case 3 : f = t -> userMapper.find3RoutineById(param);
-			break;
-			case 5 : f = t -> userMapper.find5RoutineById(param);
-			break;
-			}
+		Function<User, User> f = t -> userMapper.selectUpdatedUser(param);
 		return f.apply(param);
 	}
 

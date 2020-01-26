@@ -9,13 +9,10 @@ navi_vue = {
 			      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
 			        <ul class="navbar-nav mr-auto">
 			          <li id="make_routine"  class="nav-item active"></li>
-			          <li id="show_routine" class="nav-item">
-			          </li>
+								<li id="show_routine" class="nav-item active"></li>
+								<li id="protein_calc" class="nav-item active"></li>
 			          <li class="nav-item">
 			            <a class="nav-link" href="#">Profile</a>
-			          </li>
-			          <li class="nav-item">
-			            <a class="nav-link" href="#">Switch account</a>
 			          </li>
 			          <li class="nav-item dropdown">
 			            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
