@@ -17,11 +17,11 @@ join_vue = {
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-input" name="passwd" id="passwd" placeholder="비밀번호를 입력하세요"/>
-                            <span id="pwd_check" class="error-box"  style role="alert"></span>
+                            <span id="passwd_check" class="error-box"  style role="alert"></span>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-input" name="re_password" id="re_password" placeholder="비밀번호 재입력"/>
-                            <span class="error_next_box" id="pwd2_check" style="display : block;" aria-live="assertive"></span>
+                            <span class="error_next_box" id="passwd2_check" style="display : block;" aria-live="assertive"></span>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-input" name="uname" id="uname" placeholder="이름을 입력칸"/>
@@ -50,12 +50,6 @@ join_vue = {
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-input" name="weight" id="weight" placeholder="몸무게 입력하세요(kg 빼고)"/>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-input" name="fat" id="fat" placeholder="체지방량 입력하세요"/>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-input" name="muscle" id="muscle" placeholder="근육량 입력하세요"/>
                         </div>
                         <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />

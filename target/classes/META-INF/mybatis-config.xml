@@ -8,5 +8,6 @@
 		<typeAlias alias="User"  type="com.hellchang.web.usr.User"/>
 		<typeAlias alias="Routine"  type="com.hellchang.web.routine.Routine"/>
 		<typeAlias alias="Food"  type="com.hellchang.web.food.Food"/>
+		<typeAlias alias="Brd"  type="com.hellchang.web.brd.Brd"/>
     </typeAliases>
 </configuration>

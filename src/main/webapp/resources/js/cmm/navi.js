@@ -30,7 +30,7 @@ navi = (()=>{
         .appendTo('#make_routine')
         .click(e=>{
 			e.preventDefault()
-			alert('제발 되라'+ x.uid)
+			alert('제발 되라'+ x.userid)
         	mypage.putRoutine(x)
         })
         $('<a>',{

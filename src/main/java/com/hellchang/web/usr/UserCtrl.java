@@ -1,5 +1,6 @@
 package com.hellchang.web.usr;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import java.util.function.Consumer;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hellchang.web.enums.SQL;
+import com.hellchang.web.pxy.Box;
 import com.hellchang.web.utl.Printer;
 
 @RestController
@@ -27,30 +30,42 @@ public class UserCtrl {
 	Printer printer;
 	@Autowired
 	UserMapper userMapper;
+	@Autowired
+	Box<Object> box;
 
-	@GetMapping("/{uid}/existId")
-	public Map<?, ?> existId(@PathVariable String uid) {
-		Function<String, Integer> f = t -> userMapper.existId(uid);
-		map.clear();
-		map.put("msg", (f.apply(uid) == 0) ? "Success" : "Already Exist");
-		return map;
-	}
-
-	@PostMapping("/")
+	@PostMapping("/join")
 	public Map<?, ?> join(@RequestBody User param) {
-		Consumer<User> c = o -> userMapper.insertUser(param);
-		c.accept(param);
-		map.clear();
-		map.put("msg", "Success");
-		return map;
+		printer.accept("회원가입 진입");
+		printer.accept("ajax에서 넘어온 데이터 : " + param);
+		Consumer<User> consumer = t-> userMapper.insertUser(t);
+		consumer.accept(param);
+		box.put("msg", "success");
+		return box.get();
 	}
 
-	@PostMapping("/{uid}")
-	public User login(@PathVariable String uid, @RequestBody User param) {
+	@PostMapping("/login")
+	public Map<?, ?> login(@RequestBody User param) {
+		printer.accept("로그인진입 :::" +param.getUserid());
 		Function<User, User> f = t -> userMapper.selectByIdPw(param);
-		return f.apply(param);
+		user = f.apply(param);
+		String result = (user != null) ? "success" : "fail" ;
+		printer.accept("성공여부 : "+result +"\n" + user);
+		box.clear();
+		box.put("msg", result);
+		box.put("user", user);
+//		box.put(Arrays.asList("msg","user"), Arrays.asList(result,user));
+		printer.accept("보내는 값 : "+ box.get());
+		return box.get();
 	}
 
+	@GetMapping("/exist/{userid}")
+	public Map<?,?> dupleCheck(@PathVariable String userid){
+		Function<String, Integer> function = t -> userMapper.existId(t);
+		box.clear();
+		box.put("msg", (function.apply(userid) !=0) ? "Y" : "N");
+		return box.get();
+	}
+	
 	@PutMapping("/{uid}")
 	public User makeRoutine(@PathVariable String uid, @RequestBody User param) {
 		printer.accept("루틴 만들기 도착");
@@ -68,5 +83,17 @@ public class UserCtrl {
 		map.clear();
 		map.put("msg", "Delete Success");
 		return map;
+	}
+	
+	@GetMapping("/create/center")
+	public Map<?, ?> makeTable(){
+		HashMap<String, String> paramMap = new HashMap<>();
+		printer.accept("테이블생성 들어옴");
+		paramMap.put("CREATE_CENTER", SQL.CREATE_CENTER.toString());
+		Consumer<HashMap<String, String>> consumer = t-> userMapper.createCenter(paramMap);
+		consumer.accept(paramMap);
+		paramMap.clear();
+		paramMap.put("msg", "success");
+		return paramMap;
 	}
 }

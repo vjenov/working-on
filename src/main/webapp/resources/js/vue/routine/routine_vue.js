@@ -80,29 +80,29 @@ routine_vue = {
 				<span aria-hidden="true">&times;</span>
 				</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body" id="setModal">
 					 <div class="form-group">
                             <input type="text" class="form-input" name="height" id="height" placeholder="키를 입력하세여(cm 빼고)"/>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-input" name="weight" id="weight" placeholder="몸무게 입력하세요(kg 빼고)"/>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-input" name="fat" id="fat" placeholder="체지방량 입력하세요"/>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-input" name="muscle" id="muscle" placeholder="근육량 입력하세요"/>
+                        <input type="text" class="form-input" name="weight" id="weight" placeholder="몸무게를 입력하세요(kg 빼고)"/>
 					</div>
 					<div class="form-group">
-                        <input type="text" class="form-input" name="muscle" id="career" placeholder="경력을 입력하세요"/>
+                        <input type="text" class="form-input" name="muscle" id="muscle" placeholder="근골격량을 입력하세요"/>
+					</div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="fat" id="fat" placeholder="체지방량을 입력하세요"/>
+                    </div>
+					<div class="form-group">
+                        <input type="text" class="form-input" name="career" id="career" placeholder="쇠질 레벨(헬린이:1, 초보: 2, 중급:3, 고급:4"/>
 					</div>
 					<div class="form-group">
-                        <input type="text" class="form-input" name="muscle" id="division" placeholder="분할을 입력하세요"/>
+                        <input type="text" class="form-input" name="division" id="division" placeholder="분할을 선택하세요"/>
                     </div>
 				</div>
 				<div class="modal-footer justify-content-center">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save routine</button>
+					<input id="save_routine" type="submit" class="btn btn-primary" value="Save" data-dismiss="modal"/>
 				</div>
 				</div>
 			</div>
@@ -113,51 +113,12 @@ routine_vue = {
 	},
 	existRoutine : x=>{
 		return `<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="main-timeline">
-                <div class="timeline">
-                    <span class="icon fa fa-globe"></span>
-                    <a href="#" class="timeline-content">
-						<h3 class="title">First Step</h3>
-						<img src="http://m.targetview.com/data/article_img/2016/11/07ad4a69457d.jpg" alt="" />
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada tellus lorem, et condimentum neque commodo quis.
-                        </p>
-                    </a>
-                </div>
-                <div class="timeline">
-                    <span class="icon fa fa-rocket"></span>
-                    <a href="#" class="timeline-content">
-						<h3 class="title">Second Step</h3>
-						<img src="http://cfile224.uf.daum.net/image/244A344A58ABE5721CC864" alt="" />
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada tellus lorem, et condimentum neque commodo quis.
-                        </p>
-                    </a>
-				</div>
-				<div class="timeline">
-                    <span class="icon fa fa-rocket"></span>
-                    <a href="#" class="timeline-content">
-						<h3 class="title">Third Step</h3>
-						<img src="${x.img}/55.png" alt="" />
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada tellus lorem, et condimentum neque commodo quis.
-                        </p>
-                    </a>
-				</div>
-				<div class="timeline">
-                    <span class="icon fa fa-rocket"></span>
-                    <a href="#" class="timeline-content">
-						<h3 class="title">Four Step</h3>
-						<img src="${x.img}/66.jpg" alt="" />
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada tellus lorem, et condimentum neque commodo quis.
-                        </p>
-                    </a>
-                </div>
+	<div class="row">
+		<div class="col-md-12">
+            <div id="exercise_list"class="main-timeline">
             </div>
-        </div>
+		</div>
+		<button id="endbtn" type="button" style="margin: auto; width: 20%;" class="btn btn-secondary">운동완료</button>
     </div>
 </div>`
 	}

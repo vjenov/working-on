@@ -1,10 +1,10 @@
 "use strict"
 var mypage_vue = mypage_vue || {}
 mypage_vue ={
-	mypage_main:()=>{
+	mypage_main:x=>{
 		return `
 		<link rel="stylesheet" href="/web/resources/css/mypageMain.css"/>
-    <h1 class="text-center">어서오세요 User님</h1>
+    <h1 class="text-center">어서오세요 `+ localStorage.getItem('userid') + `님</h1>
 	<div class="container">
 		<div class="row">
 	
@@ -111,9 +111,9 @@ mypage_vue ={
 	<a href="#" class="myProtein">
 		<span>
 		<br />
-		몸 스펙에 맞춰 계산 된<br />
-		충분한 단백질 섭취로<br />
-		근손실 걱정은 손저어어얼!!
+		김종국 어록<br />운동은 먹는 것까지가 운동이다<br />
+		각자 몸에 맞는 충분한 단백질 섭취로<br />
+		근손실 걱정은 그만!!
 		</span>
 	</a>
 	</div>
@@ -156,13 +156,13 @@ mypage_vue ={
                     <form method="POST" id="myModify-form" class="myModify-form">
                         <h2 class="form-title">개인정보를 바꾸시려구요?</h2>
                         <div class="form-group">
-                            <input type="password" class="form-input" name="oldpwd" id="oldpwd" placeholder="기존 비밀번호를 입력하세요."/>
+                            <input type="password" class="form-input" name="oldpasswd" id="oldpasswd" placeholder="기존 비밀번호를 입력하세요."/>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-input" name="newpwd" id="newpwd" placeholder="새 비밀번호를 입력하세요."/>
+                            <input type="password" class="form-input" name="newpasswd" id="newpasswd" placeholder="새 비밀번호를 입력하세요."/>
 						</div>
 						 <div class="form-group">
-                            <input type="password" class="form-input" name="re_pwd" id="re_pwd" placeholder="새 비밀번호를 확인합니다."/>
+                            <input type="password" class="form-input" name="re_passwd" id="re_passwd" placeholder="새 비밀번호를 확인합니다."/>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-input" name="uname" id="newName" placeholder="이름을 입력하세요."/>

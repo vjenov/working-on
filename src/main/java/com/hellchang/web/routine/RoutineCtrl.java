@@ -23,8 +23,8 @@ public class RoutineCtrl {
 	@Autowired
 	RoutineMapper routineMapper;
 	
-	@PostMapping("/{uid}")
-	public List<Routine> showRoutine(@PathVariable String uid, @RequestBody Routine param) {
+	@PostMapping("/{userid}")
+	public List<Routine> showRoutine(@PathVariable String userid, @RequestBody Routine param) {
 		printer.accept("컨트롤러 도착" + param);
 		Function<Routine, List<Routine>> f = null;
 		switch(param.getDivision()) {
