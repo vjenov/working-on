@@ -93,11 +93,27 @@ routine_vue = {
                     <div class="form-group">
                         <input type="text" class="form-input" name="fat" id="fat" placeholder="체지방량을 입력하세요"/>
                     </div>
+					<p>본인의 헬스레벨을 선택하세요</p>
 					<div class="form-group">
-                        <input type="text" class="form-input" name="career" id="career" placeholder="쇠질 레벨(헬린이:1, 초보: 2, 중급:3, 고급:4"/>
-					</div>
+                        <input class="form-check-input" type="radio" name="career" id="career" value="1">
+                        <label class="form-check-label">헬린이</label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-check-input" type="radio" name="career" id="career" value="2">
+                        <label class="form-check-label">초보</label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-check-input" type="radio" name="career" id="career" value="3">
+                        <label class="form-check-label">중급</label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-check-input" type="radio" name="career" id="career" value="4">
+                        <label class="form-check-label">고급</label>
+                    </div>
 					<div class="form-group">
-                        <input type="text" class="form-input" name="division" id="division" placeholder="분할을 선택하세요"/>
+                        <select type="text" name="division" onChange={this.onChange.bind(this)}>
+							<option value="" selected disabled hidden id="division">운동 루틴을 선택해주세요.</option>
+						</select>
                     </div>
 				</div>
 				<div class="modal-footer justify-content-center">

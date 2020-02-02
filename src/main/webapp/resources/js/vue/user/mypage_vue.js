@@ -4,7 +4,7 @@ mypage_vue ={
 	mypage_main:x=>{
 		return `
 		<link rel="stylesheet" href="/web/resources/css/mypageMain.css"/>
-    <h1 class="text-center">어서오세요 `+ localStorage.getItem('userid') + `님</h1>
+    <h1 class="text-center">어서오세요 `+ sessionStorage.getItem('userid') + `님</h1>
 	<div class="container">
 		<div class="row">
 	

@@ -28,7 +28,7 @@ public class RoutineCtrl {
 		printer.accept("컨트롤러 도착" + param);
 		Function<Routine, List<Routine>> f = null;
 		switch(param.getDivision()) {
-			case 0 : f = t -> routineMapper.find0RoutineById(param);
+			case 1 : f = t -> routineMapper.find1RoutineById(param);
 			break;
 			case 2 : f = t -> routineMapper.find2RoutineById(param);
 			break;
@@ -36,6 +36,7 @@ public class RoutineCtrl {
 			break;
 			case 5 : f = t -> routineMapper.find5RoutineById(param);
 			break;
+			case 7 : f = t -> routineMapper.findAeroRoutineById(param);
 			}
 		return f.apply(param);
 	}

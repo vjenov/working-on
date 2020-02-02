@@ -31,7 +31,7 @@ public class BrdCtl {
 		c.accept(param);
 		
 		Supplier<String> s =()->  brdMapper.countArtseq();
-		box.put(Arrays.asList("msg","count"),Arrays.asList("SUCCESS",s.get()));
+		box.put(Arrays.asList("msg"),Arrays.asList("SUCCESS"));
 		return box.get();
 	}
 	
@@ -55,7 +55,6 @@ public class BrdCtl {
 		c.accept(param);
 		Supplier<Brd> d = ()-> brdMapper.selectBrd(seq);
 		return d.get();
-		
 	}
 	
 	@DeleteMapping("/{seq}")

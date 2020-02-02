@@ -87,4 +87,10 @@
 		FROM PULL WHERE PART LIKE #{parta} AND DIFFICULTY <= #{career} ORDER BY RAND() LIMIT 5)
 	]]>
 	</select>
+	<select id = "findAeroRoutineById" parameterType="Routine" resultType="Routine">
+    <![CDATA[
+    	(SELECT ENAME, PART, RWEIGHT, LINK
+		FROM AEROBIC WHERE PART LIKE #{parta} ORDER BY RAND() LIMIT 1)
+	]]>
+	</select>
 </mapper>

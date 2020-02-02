@@ -1,0 +1,14 @@
+{
+    "telemetry.machineId": "45c011197eecee4a54cda76497c2504411ddc81de0dd9a1069a9aee1f5fbf33e",
+    "openedPathsList": {
+        "workspaces3": [
+            {
+                "id": "b21cb1554806aa2aa29784cff9084cec",
+                "configURIPath": "file:///c%3A/Users/taem/springboot-workspace/hellchang/.metadata/codemix.code-workspace"
+            }
+        ],
+        "files2": []
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#221a0f"
+}

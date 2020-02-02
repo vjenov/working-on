@@ -21,9 +21,9 @@ public class RootConfig {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 	    dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-	    dataSource.setUrl("jdbc:mariadb://localhost:3307/taem");
-	    dataSource.setUsername("TAEM");
-	    dataSource.setPassword("TAEM");
+	    dataSource.setUrl("jdbc:mariadb://healthdb.ciddvnho9ruv.ap-northeast-2.rds.amazonaws.com/healthdb");
+	    dataSource.setUsername("healthdb");
+	    dataSource.setPassword("healthdb");
 	    return dataSource;
 	}
 }

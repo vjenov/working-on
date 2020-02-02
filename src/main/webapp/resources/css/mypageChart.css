@@ -1,0 +1,28 @@
+@charset "UTF-8";
+.chartMain{
+	display: grid;
+	grid-template-rows: 400px 600px;
+	grid-template-columns: repeat(3, 1fr);
+}
+.chart1{
+	width : 400px;
+	height : 100%;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	text-align : center;
+	margin: 0 auto;
+}
+.chart2{
+	width: 400px;
+}
+.chart3{
+	width : 400px;
+}
+.chart4{
+	grid-column: 1 / 4;
+	width: 1200px;
+	border:1px solid #ddd;
+	border-radius : 4px;
+	text-align: center;
+	margin: 0 auto;
+}
