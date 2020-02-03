@@ -42,7 +42,7 @@ mypage_vue ={
 	</div>
 	
 	<div class="team-back">
-	<a href="#" class="myGraph">
+	<a href="#" class="myChart">
 		<span>
 		<br />
 		부위 별 운동횟수,</br>
@@ -195,58 +195,68 @@ mypage_vue ={
         </section>
     </div>`
 	},
-	mypage_graph: x=>{
+	mypage_chart: x=>{
 		return `
-		<link rel="stylesheet" href="/web/resources/css/mypageGraph.css"/>
-					<div class ="graphs" style=" width: 1000px;
-						display: grid;
-						grid-template-rows: 350px 500px;
-						grid-template-columns: repeat(3, 1fr);">
-	<!--가로막대그래프-->
-		<div class="countEx">부위 별 운동 횟수
-			<div class="graph stack1">
-				<span style="width: 75%">가슴 75회</span>
+		<link rel="stylesheet" href="${x}/mypageChart.css"/>
+		<div class="chartMain">
+			<div class="chart1">
+				<canvas id="myChart1"></canvas>
 			</div>
-			<div class="graph stack2">
-				<span style="width: 25%">등 25회</span> 
+			<div class="chart2">
+				<div id="chart-container"></div>
 			</div>
-			<div class="graph stack3">
-				<span style="width: 33%">어깨 33회</span>
+			<div class="chart3">
+			  <div class="main">
+					<div class="content-wrap">
+					<div class="content-left">
+						<div class="main-wrap">
+						<div id="main-day" class="main-day"></div>
+						<div id="main-date" class="main-date"></div>
+						</div>
+						<div class="todo-wrap">
+						<div class="todo-title">Todo List</div>
+						<div class="input-wrap">
+							<input type="text" placeholder="please write here!!" id="input-box" class="input-box">
+							<button type="button" id="input-data" class="input-data">INPUT</button>
+							<div id="input-list" class="input-list"></div>
+						</div>
+						</div>
+					</div>
+					<div class="content-right">
+						<table id="calendar" align="center">
+						<thead>
+							<tr class="btn-wrap clearfix">
+							<td>
+								<label id="prev">
+									&#60;
+								</label>
+							</td>
+							<td align="center" id="current-year-month" colspan="5"></td>
+							<td>
+								<label id="next">
+									&#62;
+								</label>
+							</td>
+							</tr>
+							<tr>
+								<td class = "sun" align="center">Sun</td>
+								<td align="center">Mon</td>
+								<td align="center">Tue</td>
+								<td align="center">Wed</td>
+								<td align="center">Thu</td>
+								<td align="center">Fri</td>
+								<td class= "sat" align="center">Sat</td>
+							</tr>
+						</thead>
+						<tbody id="calendar-body" class="calendar-body"></tbody>
+						</table>
+					</div>
+					</div>
+				</div>
 			</div>
-			<div class="graph stack4">
-				<span style="width: 45%">이두 45회</span>
+			<div class="chart4">
+				<canvas id="myChart4"></canvas>
 			</div>
-			<div class="graph stack5">
-				<span style="width: 51%">삼두 51회</span>
-			</div>
-			<div class="graph stack6">
-				<span style="width: 34%">하체 34회</span>
-			</div>
-			<div class="graph stack7">
-				<span style="width: 85%">코어 85회</span>
-			</div>
-		</div>
-	<!--프로그래스 바-->
-		<div class="rateEx" style="  text-align:center; font-size : 20px; font-weight:bold;">월 운동량 달성률
-		<div class="row">
-		<div class="col-md-3 col-sm-6">
-		<div class="progress blue">
-		<span class="progress-left">
-		<span class="progress-bar"></span>
-		</span>
-		<span class="progress-right">
-		<span class="progress-bar"></span>
-		</span>
-		<div class="progress-value">90%</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		<div>
-		<canvas id="myChart">
-		</canvas>
-		</div>
-		`
+		</div>`
 	}
 }

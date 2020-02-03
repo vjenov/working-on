@@ -95,24 +95,20 @@ routine_vue = {
                     </div>
 					<p>본인의 헬스레벨을 선택하세요</p>
 					<div class="form-group">
-                        <input class="form-check-input" type="radio" name="career" id="career" value="1">
-                        <label class="form-check-label">헬린이</label>
+                        <label class="form-check-label" style="position: relative; left: 20px;"><input class="form-check-input" type="radio" name="career" id="career" value="1">헬린이</label>
                     </div>
                     <div class="form-group">
-                        <input class="form-check-input" type="radio" name="career" id="career" value="2">
-                        <label class="form-check-label">초보</label>
+                        <label class="form-check-label" style="position: relative; left: 20px;"><input class="form-check-input" type="radio" name="career" id="career" value="2">초보</label>
                     </div>
                     <div class="form-group">
-                        <input class="form-check-input" type="radio" name="career" id="career" value="3">
-                        <label class="form-check-label">중급</label>
+                        <label class="form-check-label" style="position: relative; left: 20px;"><input class="form-check-input" type="radio" name="career" id="career" value="3">중급</label>
                     </div>
                     <div class="form-group">
-                        <input class="form-check-input" type="radio" name="career" id="career" value="4">
-                        <label class="form-check-label">고급</label>
+                        <label class="form-check-label" style="position: relative; left: 20px;"><input class="form-check-input" type="radio" name="career" id="career" value="4">고급</label>
                     </div>
 					<div class="form-group">
-                        <select type="text" name="division" onChange={this.onChange.bind(this)}>
-							<option value="" selected disabled hidden id="division">운동 루틴을 선택해주세요.</option>
+                        <select type="text" name="division" onChange={this.onChange.bind(this)} id="division">
+							<div id="div_detail"></div>
 						</select>
                     </div>
 				</div>

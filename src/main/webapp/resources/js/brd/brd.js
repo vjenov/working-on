@@ -1,152 +1,185 @@
 var brd = brd || {}
 brd = (()=>{
-	const WHEN_ERR  = '에러에러'
-	let context, js, css, img , brd_vue_js , profile_js
-	let main_home_js
-	let navi_vue_js
-	let app_js
-
+	let _, js, css, img, brd_vuejs , profilejs
 	let init = ()=>{
-		context = $.ctx(),
-		js = $.js(),
-		css = $.css(),
-		img = $.img(),
-		brd_vue_js = js+'/vue/brd/brd_vue.js'
-		profile_js = js+'/brd/profile.js'
-		main_home_js = js + '/cmm/main_home.js'
-		navi_vue_js = js + '/vue/menu/navi_vue.js'
-		app_js = js + '/app.js'
+		_ = $.ctx()
+		js = $.js()
+		css = $.css()
+		img = $.img()
+		brd_vuejs = js+'/vue/brd/brd_vue.js'
+		profilejs = js+'/brd/profile.js'
 	}
 	let onCreate = () => {
 		init()
 		$.when(
-			$.getScript(brd_vue_js),
-			$.getScript(profile_js),
-			$.getScript(main_home_js),
-			$.getScript(navi_vue_js),
-			$.getScript(app_js)
+			$.getScript(brd_vuejs),
+			$.getScript(profilejs)
 		)
 		.done(()=>{
 			setContentView()
-			createPost()
-			gohome()
-		}).fail(()=>{alert(WHEN_ERR)})
-	}
-	let createPost =()=>{
-		$('<button>', { type:'button', text :'Publish'})
-			.addClass('btn btn-success btn-sm')
-			.appendTo('#write_form')
-			.click(e=>{
-				alert('퍼블리싱 클릭 성공 ')
-				e.preventDefault()
-				$.ajax({
-					url: context+'/brds/',
-					type:'PUT',
-					data: JSON.stringify({content: $('#exampleModal textarea').val()}),
-					dataType :'json',
-					contentType : 'application/json',
-					success : d =>{
-						$('#exampleModal').modal("hide")
-						onCreate()
-						alert('성공')
-					},
-					error : e =>{
-						alert('ajax 실패')
-					}
-				})
-			})
-			$('<i>')
-			.addClass('fas fa-camera-retro p-1 border rounded mt-1')
-			.appendTo('.modal-body')
-			.click(e=>{
-				alert('이미지 업로드 클릭성공2')
-			})
-			$('#btn-profile')
-			.click(()=>{
-				profile.onCreate()
-			})
+		})
+		.fail(()=>{
+		})
 	}
 	let setContentView=() => {
-		$('head').append(brd_vue.brd_head())
-		$('#mainNav').remove()
-		$('.masthead').remove()
+		$('.masthead2').remove()
 		$('.page-footer').remove()
-		$('#mainpage').html(brd_vue.brd_body())
+		$('#mainpage').empty()
+		$('#mainpage').append(brd_vue.brd_body())
 		recent_updates()
+		write()
 	}
 	let recent_updates =()=> {
 		$('#recent_updates .card').remove()
-		$.getJSON(context +'/brds/list',d=>{
+		$.getJSON(_+'/post/list',d=>{
 			$.each(d,(i,j)=>{
-				$(`<div class="card mx-auto custom-card" >
-                   	<div class="row post-header col-12 py-2 px-3">
-                  	<div class="col-6 float-left "><h4>`+j.seq+`번째 게시글 </h4></div>
-                	<div class="col-6 float-right text-right post-number"><h4>12/14</h4></div>
-                    </div>
-                    <img class="card-img" src="https://assets.breatheco.de/apis/img/images.php?blob&tags=bobdylan" alt="Card image cap">
-                    <div class="card-body px-3">
-                    <h5 class="card-title">1000 Likes</h5>
-                    <p class="card-text">`+j.content+`</p>
-                    </div>
-                    <div class="row post-header px-3 pb-3">
-                    <div class="col-1 float-left text-left"><i class="far fa-heart"></i></i></div>
-                    <div class="col-10 float-left text-left">Comment...</div>
-                    <div class="col-1 float-right text-right"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-                    </div>       
-					</div>
-					<div class="modal fade" id="myFullsizeModal${j.seq}" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel">
-					<div class="modal-dialog modal-fullsize" role="document">
-					<div class="modal-content modal-fullsize">
-					<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel">`+j.seq+`</h4>
-					</div>
-					<div class="modal-body">
-					<img class="card-img" src="https://assets.breatheco.de/apis/img/images.php?blob&tags=bobdylan" alt="Card image cap">
-					<input type="text" class="modal-content" value="`+j.content+`">
-					</div>
-					<div class="modal-footer">	
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					<button type="button" id="btn_update" class="btn btn-default" data-dismiss="modal">수정</button>
-					</div>
-					</div>
-					</div>
-					</div>`)
-					.appendTo('#recent_updates')
-					.click(()=>{
+				$(`           <div class="card mx-auto custom-card" >
+                                <div class="row post-header col-12 py-2 px-3">
+                                    <div class="col-6 float-left "><h4>`+j.postno+`번째 게시글 </h4></div>
+                                    <div class="col-6 float-right text-right post-number"><h4>12/14</h4></div>
+                                </div>
+                                <img class="card-img" src="${_+'/resources/upload/'+j.img}" alt="Card image cap">
+                                <div class="card-body px-3">
+                                    <h5 class="card-title">1000 Likes</h5>
+                                    <p class="card-text">`+j.content+`</p>
+                                </div>
+                                 <div class="row post-header px-3 pb-3">
+                                    <div class="col-1 float-left text-left"><i class="far fa-heart"></i></i></div>
+                                    <div class="col-10 float-left text-left">Comment...</div>
+                                    <div class="col-1 float-right text-right"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                                </div>       
+							</div>
+
+							<div class="modal fade" id="myFullsizeModal${j.postno}" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel">
+							    <div class="modal-dialog modal-fullsize"  role="document">
+							        <div class="modal-content modal-fullsize">
+							            <div class="modal-header">
+							                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							                <h4 class="modal-title">${j.postno}</h4>
+							            </div>
+							            <div class="modal-body">
+							                <img class="card-img" src="${_+'/resources/upload/'+j.img}" alt="Card image cap">
+							                <input type="text" class="modal-content" value="${j.content}">
+							            </div>
+							            <div class="modal-footer">
+							                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+							                <button type="button" class="btn modify" data-dismiss="modal">수정</button>
+							                <button type="button" class="btn delete" data-dismiss="modal">삭제</button>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+					`
+				)
+				.appendTo('#recent_updates')
+				.click(()=>{
+					$(`#myFullsizeModal${j.postno}`).modal()
 					update(j)
-					})
+					brd_delete(j)
 				})
 			})
+		})
 	}
-	let update=x=>{
-		$(`#myFullsizeModal${x.seq}`).modal()
-		$('#btn_update')
+	let write=()=>{
+		$('<button>', { type:'button', text :'Publish'})
+		.addClass('btn btn-success btn-sm')
+		.appendTo('#write_form')
 		.click(e=>{
 			e.preventDefault()
-			let data = {content:$(`#myFullsizeModal${x.seq}. modal-content`).val()}
-			alert('수정클릭'+ $(`#myFullsizeModal${x.seq}. modal-content`).val())
+				let json ={
+					userno : parseInt(sessionStorage.getItem('userno')),
+					content: $('#exampleModal textarea').val()
+				}
+			alert('userno'+json.userno)
 			$.ajax({
-				url:context+'/brds/update/'+x.seq,
+				url:_+'/post/',
+				type:'PUT',
+				data: JSON.stringify(json),
+				dataType :'json',
+				contentType : 'application/json',
+				success : d =>{
+					$('#exampleModal').modal("hide")
+					onCreate()						
+				},
+				error : e =>{
+					alert('ajax 실패')
+				}
+			})
+		})
+		$('<input>',{type:"file",id:"upload"})
+		.appendTo('.modal-body')
+		$('<i>')
+		.addClass('fas fa-camera-retro p-1 border rounded mt-1')
+		.appendTo('.modal-body')
+		.click(e=>{
+			e.preventDefault()
+			let formData = new FormData()
+			let files = $('#upload')[0].files  //[0] 은 아래 for문이 length 배열이라서 길이… 아마 저자는 파일말고 텍스트라던지 다른것들도 같이 업로드하려고 배열을 쓰지 않았을까 추측함!
+			let i = 0
+			for(i=0; i<files.length; i++){
+				formData.append("uploadFile",files[i])
+			}
+			$.ajax({
+				url:_+'/post/fileupload',
+				processData:false,
+				contentType:false,
+				data:formData,
+				type:'POST',
+				success:d=>{
+					alert('파일업로드성공')
+				},
+				error:d=>{
+					alert('파일업로드 실패')
+				}
+			})
+		})
+		$('#btn-profile')
+		.click(()=>{
+			profile.onCreate()
+		})
+		
+	}
+	
+	let update=x=>{
+		$(`#myFullsizeModal${x.postno} div div div button.btn.modify`)
+		.click(e=>{
+			e.preventDefault()
+			let data = {content:$(`#myFullsizeModal${x.postno} div div div input`).val(),
+				postno:x.postno
+				}
+			$.ajax({
+				url:_+'/post/update/'+x.postno,
 				type:'PUT',
 				data: JSON.stringify(data),
 				dataType:'json',
 				contentType: 'application/json',
 				success:d=>{
-					alert('성공')
+					recent_updates()
 				},
 				error: e=>{
 					alert('에러발생')
 				}
 			})
 		})
-	
 	}
-	let gohome =()=>{
-		$('#brd_home').click(e=>{
+	let brd_delete=x=>{
+		$(`#myFullsizeModal${x.postno} div div div button.btn.delete`)
+		.click(e=>{
 			e.preventDefault()
-			$('head').html(navi_vue.main_head({js :js,css:css}))
-			app.run(context)
+	
+			$.ajax({
+				url:_+'/post/delete/'+x.postno,
+				type:'DELETE',
+				data: JSON.stringify({postno:x.postno}),
+				dataType:'json',
+				contentType: 'application/json',
+				success:d=>{
+					recent_updates()
+				},
+				error: e=>{
+					alert('에러발생')
+				}
+			})
 		})
 	}
 	return { onCreate }

@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class User{
 	private String userid, passwd, uname, gender;
 	private double height, weight, muscle, fat;
-	private int age, career, division;
+	private int age, career, division, userno;
 }

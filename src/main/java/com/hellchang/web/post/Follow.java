@@ -1,4 +1,4 @@
-package com.hellchang.web.brd;
+package com.hellchang.web.post;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Lazy
-public class Brd {
-	private String seq, userid, img, content, comments, ratings, regdate; 
+public class Follow {
+	private int followno;
+	private int following;
+	private int follower;
+
 }

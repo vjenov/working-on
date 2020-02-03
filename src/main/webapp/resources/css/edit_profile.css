@@ -1,139 +1,106 @@
-body {
-    background: -webkit-linear-gradient(left, silver, white);
-    font-family: "Open Sans";
-}
-.navbar-brand {
-    display: inline-block;
-    padding-top: .3125rem;
-    padding-bottom: .3125rem;
-    margin-right: 1rem;
-    font-size: 2.25rem;
-    line-height: inherit;
-    white-space: nowrap;
-}
-/* Profile container */
-.profile {
-    margin: 20px 0;
+img{
+  display:block;
 }
 
-/* Profile sidebar */
-.profile-sidebar {
-    padding: 20px 0 10px 0;
-    background: #fff;
+#edit-profile {
+  display: flex;
+  justify-content: center;
 }
 
-.profile-usertitle {
-    text-align: center;
-    margin-top: 20px;
+#edit-profile .edit-profile__container {
+  background-color: white;
+  border: 1px solid #e6e6e6;
+  width: 100%;
+  max-width: 800px;
 }
 
-.profile-usertitle-name {
-    color: #5a7391;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 7px;
+#edit-profile .edit-profile__container {
+  padding: 40px 0;
 }
 
-.profile-usertitle-job {
-    text-transform: uppercase;
-    color: #5b9bd1;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 15px;
+#edit-profile .edit-profile__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
-.profile-userbuttons {
-    text-align: center;
-    margin-top: 10px;
+
+
+.edit-profile__header .edit-profile__avatar-container {
+  width: 200px;
 }
 
-.profile-userbuttons .btn {
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 6px 15px;
-    margin-right: 5px;
+.edit-profile__avatar-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 35px;
 }
 
-.profile-userbuttons .btn:last-child {
-    margin-right: 0px;
+.edit-profile__avatar-container img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+.edit-profile__header h4 {
+  font-size: 18px;
+  font-weight: 600;
 }
 
-.profile-usermenu {
-    margin-top: 30px;
+.edit-profile__form .form__row {
+  display: flex;
 }
 
-.profile-usermenu ul li {
-    border-bottom: 1px solid #f0f4f7;
+.form__row {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
-.profile-usermenu ul li:last-child {
-    border-bottom: none;
+.form__row .form__label {
+  width: 200px;
+  display: block;
+  text-align: right;
+  margin-right: 35px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
-.profile-usermenu ul li a {
-    color: #93a3b5;
-    font-size: 14px;
-    font-weight: 400;
+.form__row label {
+  font-size: 15px;
+  width: 80%;
 }
 
-.profile-usermenu ul li a i {
-    margin-right: 8px;
-    font-size: 14px;
+.form__row .form__input,
+.form__row textarea {
+  padding: 8px;
+  width: 255px;
+  resize: vertical;
+  border: 0;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
 }
 
-.profile-usermenu ul li a:hover {
-    background-color: #fafcfd;
-    color: #5b9bd1;
+.form__row input[type="checkbox"] {
+  margin-right: 15px;
 }
 
-.profile-usermenu ul li.active {
-    border-bottom: none;
+#edit-profile select {
+  background: 0 0;
+  border: 1px solid #efefef;
+  border-radius: 3px;
+  color: #262626;
+  font-size: 16px;
+  height: 32px;
+  padding: 0 30px 0 10px;
 }
 
-.profile-usermenu ul li.active a {
-    color: #5b9bd1;
-    background-color: #fbf6f7;
-    border-left: 2px solid #d62828;
-    margin-left: -2px;
-}
-
-/* Profile Content */
-.profile-content {
-    padding: 20px;
-    background: #fff;
-    min-height: 360px;
-}
-.profile-content>form{
-    padding : 0px 30px;
-}
-table>tbody>tr>td{
-    padding: 15px 0 !important;
-}
-table>tbody>tr:hover{
-    background-color: #ececff;
-    cursor: pointer;
-}
-.profile-img{
-    text-align: center;
-}
-.profile-img img{
-    width: 70%;
-    height: 100%;
-}
-.profile-img .file {
-    position: relative;
-    overflow: hidden;
-    margin-top: -20%;
-    width: 70%;
-    border: none;
-    border-radius: 0;
-    font-size: 15px;
-    background: #212529b8;
-}
-.profile-img .file input {
-    position: absolute;
-    opacity: 0;
-    right: 0;
-    top: 0;
+#edit-profile input[type="submit"] {
+  margin-left: 235px;
+  border: 0;
+  color: white;
+  font-weight: 600;
+  border-radius: 3px;
+  background-color: var(--fd-blue);
+  font-size: 14px;
+  padding: 7px 25px;
 }

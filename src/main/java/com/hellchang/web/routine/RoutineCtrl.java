@@ -36,7 +36,9 @@ public class RoutineCtrl {
 			break;
 			case 5 : f = t -> routineMapper.find5RoutineById(param);
 			break;
-			case 7 : f = t -> routineMapper.findAeroRoutineById(param);
+			case 6 : f = t -> routineMapper.findAeroRoutineById(param);
+			break;
+			case 7 : f = t -> routineMapper.findTotalForNewbie(param);
 			}
 		return f.apply(param);
 	}

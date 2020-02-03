@@ -1,97 +1,102 @@
 var edit_profile_vue = edit_profile_vue || {}
 edit_profile_vue = {
-	edit_profile_head: x => {
-        return `
-    			<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
-    			<link href="${x.css}/edit_profile.css" rel="stylesheet">`
-	},
-	edit_profile_body: () => {
-		return `
-    			<header>
-        		<a class="navbar-brand" href="#" id="go_brdMain"><i class="fab fa-instagram"></i> Healthtagram</a>
-      			</header>
-    			</div>
-    			<br/>
-  				<div class="container">
-        		<div class="row profile">
-            	<div class="col-md-3">
-                <div class="profile-sidebar">
-                <div class="profile-img">
-                <img src="https://yuscards.com/img/bg-img/client-3.jpeg" alt="" />
-                <div class="file btn btn-lg btn-primary">
-                    Change Photo
-                <input type="file" name="file" />
-                </div>
-                </div>
-                <div class="profile-usertitle">
-                <div class="profile-usertitle-name">
-                	Alladin TROUMBA
-                </div>
-                <div class="profile-usertitle-job">
-                        Developer
-                </div>
-                </div>
-                <div class="profile-userbuttons">
-                    <a href="edit.html" class="btn btn-success btn-sm">프로필 사진 변경</a>
-                </div>
-                </div>
-            	</div>
-            	<div class="col-md-9">
-                <div class="profile-content">
-                <div class="row">
-                <div class="col-md-12">
-                <h4>Modify your Profile</h4>
-                <br>
-                </div>
-                </div>
-                <form>
-                <div class="form-group row">
-                <label for="username" class="col-4 col-form-label">User Name*</label>
-                    <div class="col-8">
-                        <input id="username" name="username" placeholder="Username" class="form-control here" required="required" type="text">
-                    </div>
-                </div>
-                <div class="form-group row">
-                <label for="name" class="col-4 col-form-label">First Name</label>
-                    <div class="col-8">
-                        <input id="name" name="name" placeholder="First Name" class="form-control here" type="text">
-                    </div>
-                </div>
-                <div class="form-group row">
-                <label for="lastname" class="col-4 col-form-label">Last Name</label>
-                    <div class="col-8">
-                        <input id="lastname" name="lastname" placeholder="Last Name" class="form-control here" type="text">
-                    </div>
-                </div>
-                <div class="form-group row">
-                <label for="text" class="col-4 col-form-label">Nick Name*</label>
-                    <div class="col-8">
-                        <input id="text" name="text" placeholder="Nick Name" class="form-control here" required="required" type="text">
-                    </div>
-                </div>
-                <div class="form-group row">
-                <label for="email" class="col-4 col-form-label">Email*</label>
-                    <div class="col-8">
-                        <input id="email" name="email" placeholder="Email" class="form-control here" required="required" type="text">
-                    </div>
-                </div>
-                <div class="form-group row">
-                <label for="publicinfo" class="col-4 col-form-label">Public Info</label>
-                    <div class="col-8">
-                        <textarea id="publicinfo" name="publicinfo" cols="40" rows="4" class="form-control"></textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="offset-4 col-8">
-                     	<button name="submit" type="submit" class="btn btn-primary">Update My Profile</button>
-                    </div>
-                </div>
-                </form>
-                </div>
-            	</div>
-        		</div>
-    			</div>
-    			<br>
-    			<br>`
+
+	edit_profile_body:x=>{
+	return `
+<link href="${x.css}/edit_profile.css" rel="stylesheet">
+<div>
+	<div style="margin-top: 92px">
+	<div class="navbar navbar-light sticky-top bg-light">
+	<a class="navbar-brand" href="#" id="go_brdMain"><i class="fab fa-instagram"></i> Healthtagram</a>
+</div>
+<div class="container">
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 edit_information">
+        <h3 class="text-center" style="margin-top: 30px;">프로필 정보 수정</h3>
+        <form id="profile_upload_form" method="post" enctype="multipart/form-data">
+            <table class="table">
+                <tr>
+                    <p>
+                        <label for="image">Image:</label>
+                        <br />
+                        <input type="file" name="profile_image" id="profile_image" />
+                    </p>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="profile_image_preview">
+                            <img src="http://placehold.it/180" />
+                            <br />
+                            <a href="#">Remove</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label class="profile_details_text">닉네임</label>
+                            <input type="text" name="nick_name" class="form-control" value="" required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label class="profile_details_text"> 짧은 자기 소개 :</label>
+                            <input type="text" name="user_content" class="form-control" value="" required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label class="profile_details_text">이메일 주소:</label>
+                            <input type="email" name="email" class="form-control" value="" required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label class="profile_details_text">휴대폰 번호 :</label>
+                            <input type="tel" name="phone" class="form-control" value="" required pattern=[0-9]{10}>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label class="profile_details_text">생일 :</label>
+                            <input type="date" name="birthday" class="form-control" value="" required>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label class="profile_details_text">성별 :</label>
+                            <select name="gender" class="form-control" value="" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 submit">
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success" value="Submit">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+	
+	`
+	   
+	
 	}
 }

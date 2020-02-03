@@ -12,4 +12,5 @@ public interface UserMapper {
 	public int existId(String userid);
 	public User selectUpdatedUser(User user);
 	public void createCenter(HashMap<String, String> paramMap);
+	public User infoUserByUserNo(int userno);
 }

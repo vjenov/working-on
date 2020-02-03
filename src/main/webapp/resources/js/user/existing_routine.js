@@ -56,7 +56,6 @@ existing_routine = (()=>{
 					}
 		switch(parseInt(localStorage.getItem('division'))) {	
 			case 1 : data.parta = '어깨운동', data.partb = '가슴운동', data.partc = '등운동', data.partd = '팔운동', data.parte = '하체&코어운동'
-					alert('요알 스위치 진입:::'+data.parta)
 					showRoutine(data)
 					break
 			case 2 : if(day == 0 || day == 3) {
@@ -105,8 +104,12 @@ existing_routine = (()=>{
 						setContentView()
 					}
 					break
-			case 7 : 
+			case 6 : 
 					data.parta = '유산소'
+					showRoutine(data)
+					break;
+			case 7 :
+					data.parta = '어깨운동', data.partb = '가슴운동', data.partc = '등운동', data.partd = '팔운동', data.parte = '하체&코어운동'
 					showRoutine(data)
 					break;
 		}
@@ -142,7 +145,7 @@ existing_routine = (()=>{
 				$('#backbtn').click(()=>{
 					routine.onCreate()
 				})
-				if(localStorage.getItem('division') == 7) {
+				if(localStorage.getItem('division') == 6) {
 					$.each(d, (i,j)=>{
 						$(`<div class="timeline">
 							<span class="icon fa fa-globe"></span>
@@ -150,6 +153,22 @@ existing_routine = (()=>{
 							<h3 id=id_${i} class="title">오늘의 다이어트 시작</h3>
 							</a></div>`).appendTo('#exercise_list')
 							$(`<h3>${j.part}<br />운동명 : ${j.ename}<p style="font-size: 25px; color : black;">최소목표운동시간 : ${j.rweight}</p><iframe src="${j.link}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></h3>`).appendTo("#id_"+i)
+					})
+				}else if(localStorage.getItem('division') == 7){
+					$.each(d, (i,j)=>{
+						let recommend = Math.floor(j.rweight*career*result*macho)
+						$(`<div class="timeline">
+							<span class="icon fa fa-globe"></span>
+							<a href="#" class="timeline-content">
+							<h3 id=id_${i} class="title">오늘의 ${i+1}번째 토탈루틴</h3>
+							</a></div>`).appendTo('#exercise_list')
+							if(j.rweight==0){
+								$(`<h3>${j.part}<br />운동명 : ${j.ename}<p style="font-size: 25px; color : black;">추천중량 : 본인 체중(본인 필요시 중량 추가부하)</p><iframe src="${j.link}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></h3>`).appendTo("#id_"+i)
+							}else if(i == d.length-1) {
+								$(`<h3>${j.part}<br />운동명 : ${j.ename}<p style="font-size: 25px; color : black;">최소목표운동시간 : ${j.rweight}분</p><iframe src="${j.link}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></h3>`).appendTo("#id_"+i)
+							}else{
+								$(`<h3>${j.part}<br />운동명 : ${j.ename}<p style="font-size: 25px; color : black;">추천중량 : ${recommend + (5 - (recommend%5))}kg</p><iframe src="${j.link}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></h3>`).appendTo("#id_"+i)
+							}
 					})
 				}else {
 					$.each(d, (i,j)=>{
