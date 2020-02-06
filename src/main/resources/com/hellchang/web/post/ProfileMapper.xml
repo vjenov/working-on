@@ -5,11 +5,17 @@
 <mapper namespace="com.hellchang.web.post.ProfileMapper">
 
 	<insert id="insertUserImg" parameterType="Profile">
-        insert into POST (IMG, USERNO) values (
-             #{img}, #{userno} 
-        )
+	INSERT INTO PROFILE (IMG, USERNO, CONTENT)
+	VALUES
+	(#{img}, #{userno}, #{content})
     </insert>
-      <delete id="deleteUserImg" parameterType="Profile">
-    	DELETE FROM POST WHERE userno LIKE #{userno}
+    <select id="selectedProfile" resultType="Profile" >
+    	SELECT * FROM PROFILE WHERE USERNO LIKE #{userno} 
+    </select>
+    <update id="updateProfile"  parameterType="Profile">
+  		UPDATE PROFILE SET img = #{img}, content = #{content} WHERE USERNO LIKE #{userno}
+	</update>
+    <delete id="deleteUserImg" parameterType="Profile">
+    	DELETE FROM PROFILE WHERE USERNO LIKE #{userno}
     </delete>
 </mapper>

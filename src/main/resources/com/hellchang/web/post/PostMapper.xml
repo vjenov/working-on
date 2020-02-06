@@ -8,18 +8,21 @@
 	insert into POST (USERNO, IMG, CONTENT, TAGNAME) VALUES (#{userno}, #{img}, #{content}, #{tagname})
     </insert>
     <select id="countArtseq" resultType="String">
-    SELECT COUNT(*) from POST
+    SELECT COUNT(*) FROM POST
     </select>
     <select id="selectAll" resultType="Post" >
-    	SELECT * FROM POST ORDER by postno DESC
+    	SELECT * FROM POST ORDER by POSTNO DESC, COMMENTNO
+    </select>
+    <select id="userSelectAll" resultType="Post" >
+    	SELECT * FROM POST WHERE USERNO LIKE #{userno} ORDER by POSTNO DESC
     </select>
     <select id="selectPost" resultType="Post">
-		SELECT * FROM POST WHERE postno LIKE #{postno}
+		SELECT * FROM POST WHERE POSTNO LIKE #{postno}
 	</select>
 	<update id="updatePost"  parameterType="Post">
-  		UPDATE POST SET CONTENT = #{content} WHERE postno LIKE #{postno}
+  		UPDATE POST SET CONTENT = #{content} WHERE POSTNO LIKE #{postno}
 	</update>
     <delete id="deletePost" parameterType="Post">
-    	DELETE FROM POST WHERE postno LIKE #{postno}
+    	DELETE FROM POST WHERE POSTNO LIKE #{postno}
     </delete>
 </mapper>

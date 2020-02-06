@@ -122,8 +122,8 @@ existing_routine = (()=>{
 			contentType: 'application/json',
 			data: JSON.stringify({
 				userid : sessionStorage.getItem('userid'),
-				muscle : localStorage.getItem('muscle'),
-				fat : localStorage.getItem('fat'),
+				muscle : sessionStorage.getItem('muscle'),
+				fat : sessionStorage.getItem('fat'),
 				career : localStorage.getItem('career'),
 				division : localStorage.getItem('division'),
 				parta : x.parta,
@@ -135,10 +135,10 @@ existing_routine = (()=>{
 			success : d => {
 				let career = localStorage.getItem('career')
 				let macho = 1
-				let result = localStorage.getItem('gender')==='female'? gender = 0.7 : gender = 1
-				if(localStorage.getItem('muscle')>=50.0) {
+				let result = sessionStorage.getItem('gender')==='female'? gender = 0.7 : gender = 1
+				if(sessionStorage.getItem('muscle')>=50.0) {
 					macho = 1.7
-				}else if(localStorage.getItem('muscle')>=40.0) {
+				}else if(sessionStorage.getItem('muscle')>=40.0) {
 					macho = 1.5
 				}
 				$('#mainpage').html(routine_vue.existRoutine())

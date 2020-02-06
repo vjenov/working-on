@@ -41,8 +41,109 @@ profile = (()=>{
 		$('.page-footer').remove()
 		$('#mainpage').empty()
 		$('#mainpage').append(profile_vue.profile_body({css : $.css()}))
-		$('head').append(profile_vue.profile_head({css : $.css()}))
-
+		$.getJSON(_+'/profile/info/'+sessionStorage.getItem('userno'),d=>{
+			$.each(d,(i,j)=>{
+				$(`
+				<p class="profile__bio">
+                <span class="profile__full-name">
+                    ${sessionStorage.getItem('userid')}
+                </span> 
+                ${j.content}
+				</p>`
+				)
+                .appendTo('#profile header div div.profile_content')
+			})
+		})
+		$.getJSON(_+'/post/list/'+sessionStorage.getItem('userno'),d=>{
+			$.each(d,(i,j)=>{
+				$(` <div class="profile__photo">
+                <img src="${_+'/resources/upload/'+j.img}" />
+                <div class="profile__photo-overlay">
+                    <span class="overlay__item">
+                        <i class="fa fa-heart"></i>
+                        486
+                    </span>
+                    <span class="overlay__item">
+                        <i class="fa fa-comment"></i>
+                        344
+                    </span>
+                </div>
+            </div>
+            
+            		<div class="modal fade" id="myFullsizeModal${j.postno}" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel">
+							    <div class="modal-dialog modal-fullsize"  role="document">
+							        <div class="modal-content modal-fullsize">
+							            <div class="modal-header">
+							                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							                <h4 class="modal-title">${j.postno}</h4>
+							            </div>
+							            <div class="modal-body">
+							                <img class="card-img" src="${_+'/resources/upload/'+j.img}" alt="Card image cap">
+							                <input type="text" class="modal-content" value="${j.content}">
+							            </div>
+							            <div class="modal-footer">
+							                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+							                <button type="button" class="btn modify" data-dismiss="modal">수정</button>
+							                <button type="button" class="btn delete" data-dismiss="modal">삭제</button>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+            
+            `)
+				.appendTo('#profile section')
+				.click(()=>{
+					$(`#myFullsizeModal${j.postno}`).modal()
+					post_update(j)
+					post_delete(j)
+				})
+			})
+		})
+		
+	}
+	
+	let post_update=x=>{
+		$(`#myFullsizeModal${x.postno} div div div button.btn.modify`)
+		.click(e=>{
+			e.preventDefault()
+			let data = {content:$(`#myFullsizeModal${x.postno} div div div input`).val(),
+				postno:x.postno
+				}
+			alert('수정클릭이다' + data.postno)
+			$.ajax({
+				url:_+'/post/update/'+x.postno,
+				type:'PUT',
+				data: JSON.stringify(data),
+				dataType:'json',
+				contentType: 'application/json',
+				success:d=>{
+					setContentView()
+				},
+				error: e=>{
+					alert('에러발생')
+				}
+			})
+		})
+	}
+	let post_delete=x=>{
+		$(`#myFullsizeModal${x.postno} div div div button.btn.delete`)
+		.click(e=>{
+			e.preventDefault()
+	
+			$.ajax({
+				url:_+'/post/delete/'+x.postno,
+				type:'DELETE',
+				data: JSON.stringify({postno:x.postno}),
+				dataType:'json',
+				contentType: 'application/json',
+				success:d=>{
+					setContentView()
+				},
+				error: e=>{
+					alert('에러발생')
+				}
+			})
+		})
 	}
 
 	let fileupload =()=>{
@@ -64,7 +165,7 @@ profile = (()=>{
             $('#image_preview').slideDown(); //업로드한 이미지 미리보기 
             $(this).slideUp(); //파일 양식 감춤
         }
-    });
+    })
 
     /**
     onclick event handler for the delete button.
@@ -75,7 +176,7 @@ profile = (()=>{
         $('#image').slideDown(); //파일 양식 보여줌
         $(this).parent().slideUp(); //미리 보기 영역 감춤
         return false; //기본 이벤트 막음
-    });
+    })
     function resetFormElement(e) {
         e.wrap('<form>').closest('form').get(0).reset(); 
         //리셋하려는 폼양식 요소를 폼(<form>) 으로 감싸고 (wrap()) , 
@@ -106,13 +207,13 @@ profile = (()=>{
         }
         $.ajax({
           url: _+ '/post/fileupload',
+          type: 'POST',
+          data: formData,
           processData: false,
           contentType: false,
-          data: formData,
-          type: 'POST',
           success: () => {
             alert('파일업로드성공')
-            brd.onCreate()
+            setContentView()
           },
           error: e => {
             alert('파일업로드 실패')

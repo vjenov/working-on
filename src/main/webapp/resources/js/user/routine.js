@@ -47,13 +47,17 @@ routine = (()=>{
 			arr = [
 				{text: '근력증가', value: 1, detail: '헬린이들을 위한 근육 형성의 기초부터 시작하는 루틴을 소개해드립니다.'},
 				{text: '다이어트&체지방감소', value: 6, detail: '근력운동은 무섭고 살만 빼고 싶다하시는 분들을 위한 daily 유산소'},
-				{text: '근력&체지방 토탈루틴', value: 7, detail: '근육라인과 슬림한 바디라인 모두 놓치기 싫어하시는 분들을 위한 total 루틴'}]		
+				{text: '근력&체지방 토탈루틴', value: 7, detail: '근육라인과 슬림한 바디라인 모두 놓치기 싫어하시는 분들을 위한 total 루틴'}]
+			$('#setModal input[name="muscle"]').hide()
+			$('#setModal input[name="fat"]').hide()
 		}else{
 			arr = [
 				{text: '무분할', value: 1, detail: '무분할은 운동 가능시간이 짧고, 한 부위에 운동강도를 강하게 줄 수 없는 초보자, 여성들에게 적합합니다.'},
 				{text: '2분할', value: 2, detail: '2분할은 운동 후 회복시간이 빠른 분들에게 적합하며 몸에 자극을 자주 줄 수 있어 근형성에 도움이 됩니다.'},
 				{text: '3분할', value: 3, detail: '3분할은 운동 한 부위를 48시간 최대 휴식을 줄 수 있어 자극을 자주 줄 수 있고 근휴식도 챙길 수 있는 정석적인 분할법입니다.'},
-				{text: '5분할', value: 5, detail: '5분할은 하루에 한 부위만을 자극하는 분할법으로, 해당 부위를 하루에 전부 털어낼 수 있는 숙련자에게 추천하는 분할법입니다.'}]
+				{text: '5분할', value: 5, detail: '5분할은 하루에 한 부위만을 자극하는 분할법으로, 해당 부위를 하루에 전부 털어낼 수 있는 숙련자에게 추천하는 분할법입니다.'}]	
+			$('#setModal input[name="muscle"]').show()
+			$('#setModal input[name="fat"]').show()
 		}
 			$.each(arr, (i, j) => {
 					$(`<option value="" selected disabled hidden id=${i}>운동 루틴을 선택해주세요.</option><option value=${j.value}>${j.text} : <span><br />${j.detail}</span></option>`
@@ -87,10 +91,10 @@ routine = (()=>{
 					alert('ajax성공')
 					alert(d.career)
 					alert(d.division)
-					localStorage.setItem('height', d.height)
-					localStorage.setItem('weight', d.weight)
-					localStorage.setItem('muscle', d.muscle)
-					localStorage.setItem('fat', d.fat)
+					sessionStorage.setItem('height', d.height)
+					sessionStorage.setItem('weight', d.weight)
+					sessionStorage.setItem('muscle', d.muscle)
+					sessionStorage.setItem('fat', d.fat)
 					localStorage.setItem('career', d.career)
 					localStorage.setItem('division', d.division)
 					onCreate()

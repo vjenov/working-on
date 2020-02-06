@@ -1,6 +1,5 @@
 package com.hellchang.web.post;
 
-
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -16,5 +15,5 @@ import lombok.NoArgsConstructor;
 public class Profile {
 	private int profileno;
 	private int userno;
-	private String img;
+	private String img, content;
 }

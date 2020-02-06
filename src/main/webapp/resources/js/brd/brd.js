@@ -25,58 +25,44 @@ brd = (()=>{
 		$('.masthead2').remove()
 		$('.page-footer').remove()
 		$('#mainpage').empty()
-		$('#mainpage').append(brd_vue.brd_body())
+		$('#mainpage').append(brd_vue.brd_body({css : $.css()}))
 		recent_updates()
 		write()
 	}
 	let recent_updates =()=> {
-		$('#recent_updates .card').remove()
 		$.getJSON(_+'/post/list',d=>{
 			$.each(d,(i,j)=>{
-				$(`           <div class="card mx-auto custom-card" >
-                                <div class="row post-header col-12 py-2 px-3">
-                                    <div class="col-6 float-left "><h4>`+j.postno+`번째 게시글 </h4></div>
-                                    <div class="col-6 float-right text-right post-number"><h4>12/14</h4></div>
-                                </div>
-                                <img class="card-img" src="${_+'/resources/upload/'+j.img}" alt="Card image cap">
-                                <div class="card-body px-3">
-                                    <h5 class="card-title">1000 Likes</h5>
-                                    <p class="card-text">`+j.content+`</p>
-                                </div>
-                                 <div class="row post-header px-3 pb-3">
-                                    <div class="col-1 float-left text-left"><i class="far fa-heart"></i></i></div>
-                                    <div class="col-10 float-left text-left">Comment...</div>
-                                    <div class="col-1 float-right text-right"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-                                </div>       
-							</div>
-
-							<div class="modal fade" id="myFullsizeModal${j.postno}" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel">
-							    <div class="modal-dialog modal-fullsize"  role="document">
-							        <div class="modal-content modal-fullsize">
-							            <div class="modal-header">
-							                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							                <h4 class="modal-title">${j.postno}</h4>
-							            </div>
-							            <div class="modal-body">
-							                <img class="card-img" src="${_+'/resources/upload/'+j.img}" alt="Card image cap">
-							                <input type="text" class="modal-content" value="${j.content}">
-							            </div>
-							            <div class="modal-footer">
-							                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-							                <button type="button" class="btn modify" data-dismiss="modal">수정</button>
-							                <button type="button" class="btn delete" data-dismiss="modal">삭제</button>
-							            </div>
-							        </div>
-							    </div>
-							</div>
+				$(`
+				<div class="con">
+	                <div class="title">
+	                    
+	                    <p>${sessionStorage.getItem('uname')}</p>
+	                </div>
+	                <img src="${_+'/resources/upload/'+j.img}" alt="" class="con_img">
+	                <div class="logos">
+	                    <div class="logos_left">
+	                        <img src="${img+'/heart.svg'}" alt="" class="logo_img">
+	                        <img src="${img+'/speech-bubble.svg'}" alt="" class="logo_img">
+	                    </div>
+	              
+	                </div>
+	                <div class="content">
+						<p>${j.content}</p>
+	                    <p><b>좋아요 80개</b></p>
+	                    <p><a href="">${sessionStorage.getItem('uname')}</a> #${j.tagname}</p>
+	                    <input type="text" name="" id="" value="댓글달기">
+	                </div>
+	            </div>
 					`
 				)
 				.appendTo('#recent_updates')
-				.click(()=>{
-					$(`#myFullsizeModal${j.postno}`).modal()
-					update(j)
-					brd_delete(j)
-				})
+				$(`
+				
+				 <div class="col-md-4 col-sm-6 px-1 my-1  style="max-width:31%; max-height:40%; justify-content: space-between;">
+                            <img src="${_+'/resources/upload/'+j.img}" alt="Card image cap" style=" width: 100%;">
+                        </div>
+				`)
+				.appendTo('#menu2 div.row')
 			})
 		})
 	}
@@ -138,49 +124,6 @@ brd = (()=>{
 			profile.onCreate()
 		})
 		
-	}
-	
-	let update=x=>{
-		$(`#myFullsizeModal${x.postno} div div div button.btn.modify`)
-		.click(e=>{
-			e.preventDefault()
-			let data = {content:$(`#myFullsizeModal${x.postno} div div div input`).val(),
-				postno:x.postno
-				}
-			$.ajax({
-				url:_+'/post/update/'+x.postno,
-				type:'PUT',
-				data: JSON.stringify(data),
-				dataType:'json',
-				contentType: 'application/json',
-				success:d=>{
-					recent_updates()
-				},
-				error: e=>{
-					alert('에러발생')
-				}
-			})
-		})
-	}
-	let brd_delete=x=>{
-		$(`#myFullsizeModal${x.postno} div div div button.btn.delete`)
-		.click(e=>{
-			e.preventDefault()
-	
-			$.ajax({
-				url:_+'/post/delete/'+x.postno,
-				type:'DELETE',
-				data: JSON.stringify({postno:x.postno}),
-				dataType:'json',
-				contentType: 'application/json',
-				success:d=>{
-					recent_updates()
-				},
-				error: e=>{
-					alert('에러발생')
-				}
-			})
-		})
 	}
 	return { onCreate }
 })()

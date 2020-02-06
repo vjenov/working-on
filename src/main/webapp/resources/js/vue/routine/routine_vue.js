@@ -87,12 +87,6 @@ routine_vue = {
                     <div class="form-group">
                         <input type="text" class="form-input" name="weight" id="weight" placeholder="몸무게를 입력하세요(kg 빼고)"/>
 					</div>
-					<div class="form-group">
-                        <input type="text" class="form-input" name="muscle" id="muscle" placeholder="근골격량을 입력하세요"/>
-					</div>
-                    <div class="form-group">
-                        <input type="text" class="form-input" name="fat" id="fat" placeholder="체지방량을 입력하세요"/>
-                    </div>
 					<p>본인의 헬스레벨을 선택하세요</p>
 					<div class="form-group">
                         <label class="form-check-label" style="position: relative; left: 20px;"><input class="form-check-input" type="radio" name="career" id="career" value="1">헬린이</label>
@@ -105,6 +99,12 @@ routine_vue = {
                     </div>
                     <div class="form-group">
                         <label class="form-check-label" style="position: relative; left: 20px;"><input class="form-check-input" type="radio" name="career" id="career" value="4">고급</label>
+                    </div>
+					<div class="form-group">
+                        <input type="text" class="form-input" name="muscle" id="muscle" placeholder="근골격량을 입력하세요"/>
+					</div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="fat" id="fat" placeholder="체지방량을 입력하세요"/>
                     </div>
 					<div class="form-group">
                         <select type="text" name="division" onChange={this.onChange.bind(this)} id="division">

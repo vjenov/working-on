@@ -3,7 +3,7 @@ mypage = (() => {
 	let _, img, css, js
 	let mypage_vue_js
 	let brd_js
-	let existing_routine_js, app_js,navi_vue_js, auth_js
+	let existing_routine_js, app_js,navi_vue_js, auth_js, protein_js
 
 	let init = () => {
 		_ = $.ctx()
@@ -16,6 +16,7 @@ mypage = (() => {
 		app_js = js + '/app.js'
 		navi_vue_js = js + '/vue/menu/navi_vue.js'
 		auth_js  = js + '/user/auth.js'
+		protein_js = js + '/protein/protein.js'
 	}
 	let onCreate = x => {
 		init()
@@ -33,6 +34,7 @@ mypage = (() => {
 			goroutine()
 			gohelgram()
 			goHome()
+			goprotine()
 		}).fail(() => {
 			alert('Something goes wrong')
 		})
@@ -67,6 +69,7 @@ mypage = (() => {
 		$('.page-footer').remove()
 		$('#mainpage').empty()
 		$('#mainpage').append(mypage_vue.mypage_chart(css))
+		
 		var ctx1 = $('#myChart1');
 		var myPieChart = new Chart(ctx1,{
 			type : 'pie',
@@ -324,6 +327,14 @@ mypage = (() => {
 				e.preventDefault()
 				brd.onCreate()
 			})
+	}
+	let goprotine = x => {
+		$('a[class="myProtein"] span')
+		.click(e => {
+			e.preventDefault()
+			alert('프로틴클릭')
+			protein.onCreate()
+		})
 	}
 	let goHome =()=>{
 		$('#home').click(e=>{

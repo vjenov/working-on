@@ -33,51 +33,8 @@ edit_profile_vue = {
                 <tr>
                     <td>
                         <div class="form-group">
-                            <label class="profile_details_text">닉네임</label>
-                            <input type="text" name="nick_name" class="form-control" value="" required>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
                             <label class="profile_details_text"> 짧은 자기 소개 :</label>
-                            <input type="text" name="user_content" class="form-control" value="" required>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label class="profile_details_text">이메일 주소:</label>
-                            <input type="email" name="email" class="form-control" value="" required>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label class="profile_details_text">휴대폰 번호 :</label>
-                            <input type="tel" name="phone" class="form-control" value="" required pattern=[0-9]{10}>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label class="profile_details_text">생일 :</label>
-                            <input type="date" name="birthday" class="form-control" value="" required>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label class="profile_details_text">성별 :</label>
-                            <select name="gender" class="form-control" value="" required>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
+                            <input type="text" name="profile_content" class="form-control" value="" required>
                         </div>
                     </td>
                 </tr>
@@ -85,7 +42,7 @@ edit_profile_vue = {
                     <td>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 submit">
                             <div class="form-group">
-                                <input type="submit" class="btn btn-success" value="Submit">
+                                <input id="btn_edit_profile" type="submit" class="btn btn-success" value="Submit">
                             </div>
                         </div>
                     </td>

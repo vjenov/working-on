@@ -1,6 +1,5 @@
 package com.hellchang.web.post;
 
-
 import java.util.List;
 
 
@@ -20,4 +19,5 @@ public interface PostMapper {
 	public void updatePost(Post param);
 	//게시물 삭제
 	public void deletePost(Post param);
+	public List<Post> userSelectAll(int userno);
 }

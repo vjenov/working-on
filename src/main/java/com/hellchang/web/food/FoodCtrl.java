@@ -26,7 +26,6 @@ public class FoodCtrl {
 	
 	@GetMapping("/{weight}")
 	public List<Food> proteinCalc(@PathVariable String weight) {
-		printer.accept("단백질컨트롤러 도착");
 		Supplier<List<Food>> s = ()-> foodMapper.selectAll();
 		System.out.println(s.get());
 		return s.get();

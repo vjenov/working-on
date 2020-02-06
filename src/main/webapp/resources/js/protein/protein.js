@@ -30,13 +30,16 @@ protein = (()=>{
 		$('#mainpage').html(protein_vue.protein_body(img))
 	}
 	let proteinCalc=()=>{
-		let weight = localStorage.getItem('weight')
+		let weight = sessionStorage.getItem('weight')
 		alert(weight)
 		$.getJSON(_+'/food/' + weight, d => {
-			$.each(d, (i,j)=>{
+			let arr = [{text : 'chicken'}, {text : 'cow'}, {text : 'pig'}, {text : 'egg'}]
+			$.each((d,arr), (i,j)=>{
+				alert(j.text)
+				alert(d.fname)
 				$( '<div id="id_'+i+'"></div>')
 						.appendTo('#food')
-					$('<img src="img/egg.png" /><a>'+j.fname+":"+Math.floor(weight/j.protein+1)+"개"+'</a>')
+					$(`<img src="${img}/${j.text}.png" /><a>+${j.fname}:${Math.floor(weight/j.protein+1)}개</a>`)
 					.appendTo("#id_"+i)
 			})
 		})

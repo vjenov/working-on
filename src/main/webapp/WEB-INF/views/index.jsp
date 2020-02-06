@@ -49,6 +49,8 @@
 <script src="<%=application.getContextPath()%>/resources/js/vue/user/mypage_vue.js"></script>
 <script src="<%=application.getContextPath()%>/resources/js/user/mypage.js"></script>
 <script src="<%=application.getContextPath()%>/resources/js/user/existing_routine.js"></script>
+<script src="<%=application.getContextPath()%>/resources/js/protein/protein.js"></script>
+<script src="<%=application.getContextPath()%>/resources/js/vue/protein/protein_vue.js"></script>
 
 </head>
 <body>

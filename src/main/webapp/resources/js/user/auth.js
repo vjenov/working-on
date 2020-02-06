@@ -80,19 +80,9 @@ auth = (()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg ==='success'){
+						let t = d.user
+						$.extend(new Users(t))
 						login_home()
-						let a = d.user
-						sessionStorage.setItem('userid',a.userid)
-						sessionStorage.setItem('uname',a.uname)
-						localStorage.setItem('gender',a.gender)
-						localStorage.setItem('age',a.age)
-						localStorage.setItem('height',a.height)
-						localStorage.setItem('weight',a.weight)
-						localStorage.setItem('muscle',a.muscle)
-						localStorage.setItem('fat',a.fat)
-						localStorage.setItem('career',a.career)
-						localStorage.setItem('division',a.division)
-						alert('스토리지 저장된값 ' + sessionStorage.getItem('userid'))
 					}else {$('span[class="duple_userid"]').text('아이디를 다시 확인해주세요').css('color','red')}
 				},
 				error : e=>{alert(`ajax실패`)}
@@ -137,6 +127,7 @@ auth = (()=>{
 	let logout =()=>{
 		$('#logout').click(e=>{
 			e.preventDefault()
+			sessionStorage.clear()
 			localStorage.clear()
 			app.run(_)
 			alert('로그아웃')

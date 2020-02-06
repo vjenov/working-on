@@ -32,7 +32,7 @@
     	DIVISION = #{division}
     	WHERE USERID LIKE #{userid}
     </update>
-    <select id="selectUpdatedUser" parameterType="User" resultType="User">
+     <select id="selectUpdatedUser" parameterType="User" resultType="User">
     	SELECT * FROM USERS
     	WHERE USERID LIKE #{userid}
    	</select>
