@@ -33,13 +33,14 @@ protein = (()=>{
 		let weight = sessionStorage.getItem('weight')
 		alert(weight)
 		$.getJSON(_+'/food/' + weight, d => {
+			alert(d)
+			alert(d[0].fname)
+			alert(d.protein)
 			let arr = [{text : 'chicken'}, {text : 'cow'}, {text : 'pig'}, {text : 'egg'}]
-			$.each((d,arr), (i,j)=>{
-				alert(j.text)
-				alert(d.fname)
+			$.each(d, (i,j)=>{
 				$( '<div id="id_'+i+'"></div>')
 						.appendTo('#food')
-					$(`<img src="${img}/${j.text}.png" /><a>+${j.fname}:${Math.floor(weight/j.protein+1)}개</a>`)
+					$(`<img src="${img}/${arr[i].text}.png" /><a>+${j.fname}:${Math.floor(weight/j.protein+1)}개(100g기준)</a>`)
 					.appendTo("#id_"+i)
 			})
 		})
